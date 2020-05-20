@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDataProvider, useGetList, useNotify } from 'react-admin'
+import { useDataProvider, useGetList, useNotify, useTranslate } from 'react-admin'
 import { MenuItem } from '@material-ui/core'
 import PropTypes from 'prop-types'
 
@@ -23,6 +23,7 @@ export const addAlbumToPlaylist = (dataProvider, albumId, playlistId) =>
 
 const AddToPlaylistMenu = React.forwardRef(
   ({ selectedIds, albumId, onClose, onItemAdded }, ref) => {
+    const translate = useTranslate()
     const notify = useNotify()
     const dataProvider = useDataProvider()
     const { ids, data, loaded } = useGetList(
@@ -57,8 +58,18 @@ const AddToPlaylistMenu = React.forwardRef(
       onClose && onClose(e)
     }
 
+    const handleModalPlaylist = (e) => {
+      e.preventDefault()
+      alert("yay")
+      e.stopPropagation()
+      onClose && onClose(e)
+    }
+
     return (
       <>
+        <MenuItem value='newPlaylist' key='newPlaylist' onClick={handleModalPlaylist}>
+        {translate('resources.playlist.actions.newPlaylist')}
+        </MenuItem>
         {ids.map((id) => (
           <MenuItem value={id} key={id} onClick={handleItemClick}>
             {data[id].name}
