@@ -1,7 +1,10 @@
 import React from 'react'
 import { useDataProvider, useGetList, useNotify, useTranslate } from 'react-admin'
-import { MenuItem } from '@material-ui/core'
+import { MenuItem, Divider } from '@material-ui/core'
+import NewPlaylistIcon from '@material-ui/icons/Add'
 import PropTypes from 'prop-types'
+
+import PlaylistModalCreate from './PlaylistModalCreate'
 
 export const addTracksToPlaylist = (dataProvider, selectedIds, playlistId) =>
   dataProvider
@@ -67,14 +70,18 @@ const AddToPlaylistMenu = React.forwardRef(
 
     return (
       <>
+        <PlaylistModalCreate/>
         <MenuItem value='newPlaylist' key='newPlaylist' onClick={handleModalPlaylist}>
-        {translate('resources.playlist.actions.newPlaylist')}
+          {<NewPlaylistIcon fontSize="small" />}
+          {translate('resources.playlist.actions.newPlaylist')}
         </MenuItem>
+        <Divider component="li" />
         {ids.map((id) => (
           <MenuItem value={id} key={id} onClick={handleItemClick}>
             {data[id].name}
           </MenuItem>
         ))}
+        
       </>
     )
   }
