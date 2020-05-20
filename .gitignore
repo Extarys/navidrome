@@ -6,6 +6,7 @@
 /tmp
 data/*
 vendor/*/
+cache/*
 wiki
 TODO.md
 var
