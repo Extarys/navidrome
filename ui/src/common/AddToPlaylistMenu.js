@@ -72,8 +72,7 @@ const AddToPlaylistMenu = React.forwardRef(
     //   onClose && onClose(e)
     // }
     const handleModalData = (e) => {
-      console.log('Got it!')
-      console.log(e)
+      console.log('Got some data from child!', e)
     }
 
     return (
