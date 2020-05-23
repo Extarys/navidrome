@@ -13,7 +13,6 @@ import {
 } from '@material-ui/core'
 
 import NewPlaylistIcon from '@material-ui/icons/Add'
-import PlaylistCreate from '../playlist/PlaylistCreate'
 
 export default function PlaylistModalCreate(props) {
   const translate = useTranslate()
@@ -58,19 +57,15 @@ export default function PlaylistModalCreate(props) {
           {translate('resources.playlist.actions.newPlaylist')}
         </DialogTitle>
         <DialogContent>
-          <PlaylistCreate />
-          {/* <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send updates
-              occasionally.
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label={translate('resources.playlist.fields.name')}
-              type="text"
-              fullWidth
-            /> */}
+          <DialogContentText>Some text</DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label={translate('resources.playlist.fields.name')}
+            type="text"
+            fullWidth
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClickClose} color="primary">
