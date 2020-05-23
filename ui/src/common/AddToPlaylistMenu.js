@@ -1,7 +1,11 @@
 import React from 'react'
-import { useDataProvider, useGetList, useNotify, useTranslate } from 'react-admin'
+import {
+  useDataProvider,
+  useGetList,
+  useNotify,
+  useTranslate,
+} from 'react-admin'
 import { MenuItem, Divider } from '@material-ui/core'
-import NewPlaylistIcon from '@material-ui/icons/Add'
 import PropTypes from 'prop-types'
 
 import PlaylistModalCreate from './PlaylistModalCreate'
@@ -61,27 +65,33 @@ const AddToPlaylistMenu = React.forwardRef(
       onClose && onClose(e)
     }
 
-    const handleModalPlaylist = (e) => {
-      e.preventDefault()
-      alert("yay")
-      e.stopPropagation()
-      onClose && onClose(e)
+    // const handleModalPlaylist = (e) => {
+    //   e.preventDefault()
+    //   alert("yay")
+    //   e.stopPropagation()
+    //   onClose && onClose(e)
+    // }
+    const handleModalData = (e) => {
+      console.log('Got it!')
+      console.log(e)
     }
 
     return (
       <>
-        <PlaylistModalCreate/>
-        <MenuItem value='newPlaylist' key='newPlaylist' onClick={handleModalPlaylist}>
-          {<NewPlaylistIcon fontSize="small" />}
+        <PlaylistModalCreate
+          onReceiveData={handleModalData}
+          parentOnClose={onClose}
+        />
+        {/* <MenuItem value='newPlaylist' key='newPlaylist' onClick={handleModalPlaylist}>
+          {<NewPlaylistIcon fontSize="small" />}&nbsp;
           {translate('resources.playlist.actions.newPlaylist')}
-        </MenuItem>
+        </MenuItem> */}
         <Divider component="li" />
         {ids.map((id) => (
           <MenuItem value={id} key={id} onClick={handleItemClick}>
             {data[id].name}
           </MenuItem>
         ))}
-        
       </>
     )
   }
